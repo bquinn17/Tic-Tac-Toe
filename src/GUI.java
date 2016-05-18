@@ -34,11 +34,14 @@ public class GUI extends Application implements Observer {
             dimension = Integer.parseInt(params.getRaw().get(0));
         } catch (Exception ex){
             System.out.println("Usage: dimension of game board");
+            System.exit(-1);
         }
         this.model = new Model(dimension);
         this.model.addObserver(this);
         border = new BorderPane();
+        this.buttons = new Button[dimension][dimension];
         //buttons = new Button[model.getColumns()][model.getRows()];
+        this.message = new Label();
     }
 
     private GridPane makeButttons() {
@@ -127,6 +130,6 @@ public class GUI extends Application implements Observer {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 }
