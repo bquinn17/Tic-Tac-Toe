@@ -11,23 +11,29 @@ public class Model extends Observable{
     private char[][] board;
     private char winner;
 
-    public Model(int dimension){
+    Model(int dimension){
         this.dimension = dimension;
         this.board = new char[dimension][dimension];
     }
 
-    public int getDim(){
+    int getDim(){
         return this.dimension;
     }
 
-    public void addX(int col, int row){
+    void addX(int col, int row){
         if (this.board[col][row] != 'X') {
             this.board[col][row] = 'X';
         }
+        setChanged();
         notifyObservers();
+    }
+
+    char getPosition(int col, int row){
+        return board[col][row];
     }
 
     public void addO(int col, int row){
         this.board[col][row] = 'O';
+        notifyObservers();
     }
 }
